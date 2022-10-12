@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+    <link rel="stylesheet" href="./search.css">
+    <style>
+        form{
+            margin: auto;
+            width: 30%;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            align-items: center;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            margin-top: 50px;
+        }
+        input{
+            margin: 20px;
+            height: 50px;
+            border-radius: 2px;
+            width: 100%;
+        }
+        ::placeholder{
+            padding: 2px;
+        }
+        input[type="submit"]{
+            background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <form>
+        <h2>Sign-Up</h2>
+        <input type="text" placeholder="Enter Name" id="name">
+        <input type="email" placeholder="Enter Email" id="email">
+        <input type="password" placeholder="Enter Password" id="password">
+        <input type="submit" >
+    </form>
+    
+</body>
+<script src="./script/signup.js" type="module"></script>
+</html>

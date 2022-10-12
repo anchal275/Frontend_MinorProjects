@@ -1,0 +1,7 @@
+Q1) Explain why Java is platform independent ?
+Answer) Java is platform Independent because it has a compiler in which it compiles all the java
+code and APIs into bytecodes. Once it is converted into bytecodes then it becomes effectively 
+platform independent. The java virtual machine (JVM) takes care of the difference
+between the bytecodes for the different platforms. By this java program can be run on any
+operating system irrespective of on which operating system the program is written.
+Other programming languages such as C and C++ are not platform-independent. 

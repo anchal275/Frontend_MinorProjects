@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body{
+        margin: 0;
+        padding: 0;
+        font-family: poppins sans-serif;
+        font-size: 18px;
+      }
+      
+      #navbar{
+        display: flex;
+        justify-content: end;
+        gap: 100px;
+        border: 1px solid black;
+        padding: 10px 50px;
+       }
+       #cart{
+  margin: auto;
+  width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+#cart>div{
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    justify-content: center;
+    align-items: center;
+    
+}
+img{
+    width: 100%;
+    
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <div>login</div>
+      <div>Sign-Up</div>
+      <div><a href="./cart.html">Cart</a></div>
+      <div id="wallet">700</div>
+      <!-- Give cart link for navigation with id:- cart   -->
+      <!-- For wallet amount Show only number i.e only "500", no extra text like "amount = 500" with id :- "wallet" -->
+    </div>
+    <button id="checkout">
+      <a href="checkout.html"> checkout</a>
+
+
+    </button>
+    <!-- Provide a checkout button with id as "checkout" to go to checkout.html page -->
+
+    <div>
+      <h2 id="cart_total"></h2>
+      <!--Show cart total with id:- "cart_total" here, do not add anything only Total value. Not even "Total - 1200Rs" but like this "1200" -->
+    </div>
+    <div id="cart">
+      <!--Show items added to cart here-->
+      <!-- add an remove button to each item so that you can remove that dish from cart, give the button HTML class as 'remove' -->
+    </div>
+   
+  </body>
+  <script src="./scripts/cart.js" ></script>
+</html>

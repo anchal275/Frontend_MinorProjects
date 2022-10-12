@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body{
+            width: 80%;
+            margin: auto;
+            border: 1px solid red;
+        }
+    table{
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+table td,
+table th{
+    border: 1px solid white;
+    text-align: center;
+    padding: 8px;
+    
+}
+table th{
+    padding-top: 12px;
+    text-align: center;
+    background-color: #2B619E;
+    color: white;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+
+}
+tbody>tr>td{
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid rgb(215, 215, 215);
+
+}
+
+
+tbody>tr>td:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 95px 10px;
+
+
+    
+}
+    </style>
+</head>
+<body>
+    <h1>Cart Page</h1>
+     <table>
+         <thead>
+             <th>Image</th>
+             <th>Name</th>
+             <th>Quantity</th>
+             <th>Price</th>
+             <th>Delete</th>
+         </thead>
+         <tbody>
+             
+         </tbody>
+     </table>
+</body>
+<script>
+   
+
+    let cartdatafromLS = JSON.parse( localStorage.getItem("cartData"))
+   console.log(cartdatafromLS)
+    let count =cartdatafromLS.quantity
+    console.log(count,"anchal")
+    displaycartdata()
+    console.log(cartdatafromLS)
+    function displaycartdata(){
+        document.querySelector("tbody").innerHTML=""
+        cartdatafromLS.map(function(elem,index){
+
+        let row = document.createElement("tr")
+
+        let td1 = document.createElement("td")
+        let images = document.createElement("img")
+        images.setAttribute("src", elem.image_url)
+        td1.append(images)
+
+        let td2 = document.createElement("td")
+        td2.innerText=elem.name
+
+        let td3 = document.createElement("td")
+        let minus = document.createElement("button")
+        minus.innerText="-"
+        minus.addEventListener("click", function (){
+            decrease(elem,index)
+        })
+        
+        let quantity = document.createElement("h3")
+        quantity.innerText = elem.quantity
+
+        let plus = document.createElement("button")
+        plus.innerText="+"
+        plus.addEventListener("click",function(){
+            increase(elem,index)
+        })
+
+        td3.append(minus,quantity,plus)
+
+    
+        let td4 = document.createElement("td")
+        td4.innerText = elem.price*elem.quantity
+
+        let td5 = document.createElement("td")
+        td5.innerText="DELETE"
+        td5.style.backgroundColor="red"
+        td5.addEventListener("click",function(){
+            del(elem,index)
+        })
+
+        row.append(td1,td2,td3,td4,td5)
+        document.querySelector("tbody").append(row)
+        })
+    }
+
+    function del(elem,index){
+        cartdatafromLS.splice(index,1)
+        console.log(cartdatafromLS)
+        localStorage.setItem("cartData",JSON.stringify(cartdatafromLS))
+        window.location.reload()
+    }
+   function decrease(elem,index){
+    if(elem.quantity<1){
+        elem.quantity=0
+    }else{
+    elem.quantity--
+    localStorage.setItem("cartData",JSON.stringify(cartdatafromLS))
+    console.log(cartdatafromLS)
+    window.location.reload()
+    }
+   }
+
+   function increase(elem,index){
+  
+    elem.quantity++
+    localStorage.setItem("cartData",JSON.stringify(cartdatafromLS))
+    console.log(cartdatafromLS)
+    window.location.reload()
+   }
+
+
+
+</script>
+</html>

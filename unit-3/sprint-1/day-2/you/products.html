@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-COMMERCE II</title>
+    <style>
+        #container{
+            width: 80%;
+             margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 30px;
+            padding-top:40px ;
+        }
+        img{
+          width: 100%;
+        }
+
+        #container>div{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 20px;
+        }
+        body>h1{
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="counter"></h1>
+
+
+   
+<div id="container">
+
+
+</div>
+
+
+
+</body>
+<script>
+     let datafromlocal = JSON.parse(localStorage.getItem("Products"))
+     document.querySelector("#counter").innerText= "Item In bag : "+ (datafromlocal.length)
+
+
+     datafromlocal.map(function(elem,index){
+
+   
+    let div =  document.createElement("div")
+
+    let image = document.createElement("img")
+    image.setAttribute("src", elem.image)
+
+    let name = document.createElement("h2")
+    name.innerText= elem.name
+
+    let category = document.createElement("p")
+    category.innerText=elem.category
+
+    let price =  document.createElement("p")
+    price.innerText= "Rs "+ elem.price
+
+    let gender = document.createElement("p")
+    gender.innerText= elem.gender
+
+    let removebutton = document.createElement("button")
+    removebutton.innerText="REMOVE"
+    removebutton.addEventListener("click", function(){
+        del(elem,index)
+    })
+
+    let soldbutton = document.createElement("button")
+    if(elem.sold=="False"){
+        soldbutton.innerText="False"
+            soldbutton.style.backgroundColor="green"
+            
+            
+        }else{
+            soldbutton.style.backgroundColor="red"
+            soldbutton.innerText="True"
+        }
+   
+    soldbutton.addEventListener("click",function(){
+        if(elem.sold=="False"){
+            soldbutton.innerText="True"
+            soldbutton.style.backgroundColor="red"
+            
+            
+        }else{
+            soldbutton.innerText="False"
+            soldbutton.style.backgroundColor="green"
+        }
+    })
+
+     div.append(image,name,category,price,gender,removebutton,soldbutton)
+     document.querySelector("#container").append(div)
+     })
+ 
+
+     function del(elem,index){
+        datafromlocal.splice(index,1)
+        localStorage.setItem("Products",JSON.stringify(datafromlocal))
+        window.location.reload()
+
+     }
+
+      
+
+ 
+    
+  
+
+</script>
+</html>

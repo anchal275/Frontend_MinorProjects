@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Using LS</title>
+    <style>
+     img{
+        margin: auto;
+        display: block;
+     }
+     h1{
+        text-align: center;
+        font-size: 21px;
+        font-family: sans-serif;
+        
+     }
+     form{
+        width: 100%; 
+     }
+     label{
+        font-family: sans-serif;
+        color: rgb(49, 49, 49);
+        font-size: 14px;
+        font-weight: 500;
+     }
+     div{
+        margin: auto;
+        margin-top: 30px;
+        width: 30%;
+        border-radius: 12px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     }
+     form>input{
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        margin-bottom: 30px;
+        border-radius: 5px;
+        border: 1px solid rgb(172, 172, 172);
+        margin-top: 10px;
+
+     }
+     ::placeholder{
+        color: rgb(172, 172, 172);
+     }
+     p{
+        font-family: sans-serif;
+     }
+     p>span{
+        color:blue;
+        text-decoration: underline;
+     }
+        
+        
+    </style>
+</head>
+<body>
+     <img src="https://sso.masaischool.com/brand_dark.svg" alt="Masai LOGO">
+    <div>
+        <h1>Sign Up</h1>
+    <form>
+        <label for="">Full Name</label><br />
+        <input id="name" type="text" placeholder="Enter Your Full Name" /><br />
+
+        <label for="">Email</label><br />
+        <input id="email" type="email" placeholder="Enter Email" /><br />
+
+        <label for="">Password</label><br />
+        <input id="password" type="password" placeholder="Enter Password" /><br />
+
+        <input type="submit" value="SIGN UP" /><br />
+    </form>
+    <p>Already have an account? <span> <a href="login.html">Sign In</a></span> </p>
+    </div>
+</body>
+<script>
+    let formarr = JSON.parse(localStorage.getItem("signupData")) || []
+    document.querySelector("form").addEventListener("submit",formData)
+    function formData(event){
+        event.preventDefault()
+        let obj={
+            names: document.querySelector("#name").value,
+            emails: document.querySelector("#email").value,
+            passwords: document.querySelector("#password").value
+           
+    }
+    formarr.push(obj)
+
+    localStorage.setItem("signupData",JSON.stringify(formarr))
+    window.location.href="login.html"
+}
+
+</script>
+
+</html>

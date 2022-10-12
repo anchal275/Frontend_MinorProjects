@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMAR AKBAR ANTHONY</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    let Amar = {
+        skills:"singer",
+        borrowAmarskills: function(name){
+        console.log(`Amar is a ${this.skills}, lives in Goa.`)
+        }
+    }
+
+    let Akbar = {
+        skills:"chef",
+        borrowAkbarskills: function(name){
+        console.log(`Akbar is a ${this.skills}, lives in Mumbai.`)
+        }
+    }
+
+    let Anthony  = {
+        skills:"Magician",
+
+        borrowAnthonyskills: function(name){
+        console.log(`Anthony is a ${this.skills}, lives in Kashmir.`)
+        }
+    }
+
+
+    Anthony.borrowAnthonyskills.call(Amar)
+
+    Akbar.borrowAkbarskills.call(Anthony)
+
+    Amar.borrowAmarskills.call(Akbar)
+
+
+
+
+</script>
+</html>

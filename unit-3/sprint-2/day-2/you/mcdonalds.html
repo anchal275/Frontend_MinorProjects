@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #food-items{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 50px;
+            text-align: center;
+        }
+
+        #food-items>div>img{
+            width: 100%;
+        }
+        #food-items>div{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 30px 30px;
+        }
+
+        button{
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: orangered;
+            color: white;
+            font-size: 21px;
+            border: none;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="food-items">
+
+        
+    </div>
+    <button onclick="ordersuccess()">Order Food</button>
+</body>
+<script>
+
+    let mcdarr=[
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-spicy-deluxe-crispy-chicken-sandwich:1-4-product-tile-desktop",
+    name:"Spicy Deluxe Crispy"},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Quarter-Pounder-with-Cheese-1:1-4-product-tile-desktop",
+    name:"Quarter Pounder"},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Double-Quarter-Pounder-with-Cheese-1:1-4-product-tile-desktop",
+    name:"Double Quarter Pounder"},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-qpc-deluxe-burger:1-4-product-tile-desktop",
+    name:"Quarter Pounder®* Deluxe "},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-McDouble-1:1-4-product-tile-desktop",
+    name:"McDouble"},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Hamburger:1-4-product-tile-desktop",
+    name:"Ham Burger",
+    OrderNo: 87},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/h-mcdonalds-Big-Mac-Extra-Value-Meals:1-4-product-tile-desktop",
+    name:"Big Mac® Combo Meal"},
+    {image:"https://s7d1.scene7.com/is/image/mcdonalds/h-spicy-crispy-chicken-sandwich-meal-combo:1-4-product-tile-desktop",
+    name:"Spicy Crispy Chicken Sandwich Combo Meal"}
+]
+
+let orderarr= JSON.parse(localStorage.getItem("order")) || []
+
+
+display(mcdarr)
+function display(mcdarr){
+    mcdarr.map(function(elem,index){
+    let box = document.createElement("input")
+    box.type="checkbox"
+    box.addEventListener("change",function(){
+        if (box.checked) {
+          orderarr.push(elem)
+          localStorage.setItem("order",JSON.stringify(orderarr)) 
+          console.log(orderarr)
+       
+        }else{
+            orderarr.splice(index,1)
+            localStorage.setItem("order",JSON.stringify(orderarr)) 
+            console.log(orderarr)
+        }
+    })
+
+     let div = document.createElement("div")
+     let image = document.createElement("img")
+     image.setAttribute("src",elem.image)
+     
+     let name = document.createElement("h2")
+     name.innerText=elem.name
+
+     div.append(image,name,box)
+     document.querySelector("#food-items").append(div)
+    })
+}
+
+function ordersuccess(){
+    window.location.href="order.html"
+}
+
+
+
+</script>
+</html>

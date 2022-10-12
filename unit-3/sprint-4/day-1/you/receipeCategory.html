@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipe by Category</title>
+    <link rel="stylesheet" href="./search.css">
+    <style>
+    #box{
+        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: auto;
+        gap: 50px;
+        margin: auto;
+    }
+    #box>div{
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        padding: 20px;
+    }
+    #box>div>img{
+        width: 100%;
+    }
+    #search{
+        display: flex;
+    }
+    h4{
+        text-align: center;
+    }
+    #cat{
+        background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+        border: 1px solid black;
+        color: white;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 20px;
+
+    }
+    </style>
+</head>
+<body>
+
+    <div id="navbar"></div>
+    <h4>Search By Category Such As Seafood, Dessert, Starter, Chicken, Pasta, Vegan, Vegetarian etc </h4>
+    <div id="search" >
+        <input type="search" id="searchCat" placeholder="Search Receipe By Name">
+        <button id="cat">Search</button>
+    </div>
+    <div id="box"></div>
+
+
+
+</body>
+<script src="./script/receipeRandom.js" type="module"></script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-COMMERCE I</title>
+    <style>
+        form{
+            margin: auto;
+            width: 20%;
+            
+        }
+        
+        input,select{
+            margin-bottom: 20px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+</head>
+<body>
+    <form id="formdata">
+        <label for="">Product Name</label><br>
+        <input type="text" placeholder="Enter Product name" id="name"><br>
+        <label for="">Category</label><br>
+        <input type="text" placeholder="Enter Category" id="category"> <br>
+        <label for="">Image</label><br>
+        <input type="url" placeholder="Enter Image url" id="image"> <br>
+        <label for="">Price</label><br>
+        <input type="number" placeholder="Enter Price" id="price"> <br>
+        <select id="gender">
+            <option value="">Choose Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select><br>
+        <label for="">Sold</label><br>
+        <input id="sold" type="text" value="False"><br>
+        <input type="submit" id="add">
+       
+    </form>
+</body>
+<script>
+    let productarr = JSON.parse(localStorage.getItem("Products")) || []
+    function productsblueprint(n,c,i,p,g,s){
+        this.name=n
+        this.category=c
+        this.image=i
+        this.price=p
+        this.gender=g
+        this.sold=s
+    }
+  
+
+    document.querySelector("#formdata").addEventListener("submit", products)
+
+    function products(event){
+        event.preventDefault()
+        let name = document.querySelector("#name").value
+        let category = document.querySelector("#category").value
+        let image = document.querySelector("#image").value
+        let price = document.querySelector("#price").value
+        let gender = document.querySelector("#gender").value
+        let sold = document.querySelector("#sold").value
+        
+        let x = new productsblueprint(name,category,image,price,gender,sold)
+        productarr.push(x)
+        localStorage.setItem("Products",JSON.stringify(productarr))
+    }
+
+
+</script>
+</html>

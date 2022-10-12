@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <h1>Enter your weight and height below to check your BMI results</h1>
+    <h2>Put your weight in here (KG)</h2>
+    <input type="number" placeholder="Weight in kgs" id="weight" value="">
+    <br>
+    <br>
+    <h2>And your height in here (CM)</h2>
+    <input type="number" placeholder="height in cms" id="height" value="">
+    <br>
+    <br>
+    <button id="res">Calculate BMI</button>
+    <h3>Result</h3>
+</body>
+<script>
+
+    let x = document.querySelector("#res").addEventListener("click", calculateBMI)
+    function calculateBMI(){
+        let weight = document.querySelector("#weight").value;
+        let height = document.querySelector("#height").value;
+        let x = Number(weight);
+        let y =Number(height)*0.01;
+        let bmi = (x) / (y * y);
+
+        if(bmi<= 18.4){
+            document.querySelector("h3").innerText ="Your BMI is "+ bmi + " which means You are UnderWeight"
+        }else if(bmi >= 18.5 && bmi <= 24.9){
+            document.querySelector("h3").innerText ="Your BMI is " + bmi + " which means You are Normal Weight"
+        }else if(bmi >= 25 && bmi <= 29.9){
+            document.querySelector("h3").innerText ="Your BMI is " + bmi + " which means You are Overweight"
+        }else {
+            document.querySelector("h3").innerText ="Your BMI is " + bmi + " which means You are Obese"
+        }
+    }
+</script>
+</html>

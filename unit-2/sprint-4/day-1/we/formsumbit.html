@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM SUBMIT BASIC DOM</title>
+</head>
+<body>
+    <form>
+        <input id="name" type="text" placeholder="Enter your Name" value=""><br>
+        <input id="age" type="number" placeholder="Enter your Age" value=""><br>
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br>
+        <input id="email" type="email" placeholder="Enter your Email" value=""><br>
+        <input id="number" type="number" placeholder="Enter your Mobile No."><br>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    let arrobj=[]
+    document.querySelector("form").addEventListener("submit", data)
+
+    function data(event){
+        event.preventDefault()
+        let obj ={
+            Name: document.querySelector("#name").value,
+            Age: document.querySelector("#age").value,
+            Gender: document.querySelector("#gender").value,
+            Email: document.querySelector("#email").value,
+            MobileNo: document.querySelector("#number").value,
+        }
+        arrobj.push(obj)
+        console.log(arrobj)
+     }
+</script>
+</html>

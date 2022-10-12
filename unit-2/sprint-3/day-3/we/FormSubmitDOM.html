@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM SUBMIT BASIC DOM</title>
+</head>
+<body>
+    <form id="formSubmit">
+    <input type="text" placeholder="Enter Your Name" id="Name" value="">
+    <input type="number" placeholder="Enter Your Age" id="Age" value="">
+    <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <input type="email" placeholder="Enter Your Email" id="Email" value="">
+    <input type="number" placeholder="Enter Your Mobile No." id="Mobile" value="">
+    <input type="submit" id="submit">
+    </form>
+
+</body>
+<script>
+      document.querySelector("#formSubmit").addEventListener("submit",createObject);
+      
+
+     function createObject(event){
+         event.preventDefault()
+         
+         let Name1 = document.querySelector("#Name").value;
+         let Age1 = document.querySelector("#Age").value;
+         let Gender1 = document.querySelector("#gender").value;
+         let Email1 = document.querySelector("#Email").value;
+         let Mobile1 = document.querySelector("#Mobile").value;
+         let data = []
+         let obj={
+             Name:Name1,
+             Age:Age1,
+             Gender:Gender1,
+             Email:Email1,
+             Mobile:Mobile1
+         };
+         data.push(obj)
+         console.log(data)
+      
+
+     }
+</script>
+</html>

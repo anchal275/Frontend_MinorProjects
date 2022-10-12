@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS POLYFILLS</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // Create your custom map method (myMap), which will work exactly similar to Array.map().
+let arr1 = [1,2,3,4,5]
+let newarr = []
+Array.prototype.NewMap = function(func){
+        for(let i=0;i<this.length;i++){
+            let x = func(this[i])
+            newarr.push(x)
+            
+        }
+        return newarr
+}
+
+let x = arr1.NewMap(function(x){
+    return x*3
+
+})
+console.log(x)
+
+let arr2 = [1,2,3,4,5]
+Array.prototype.NewForeach = function(func){
+        for(let i=0;i<this.length;i++){
+            let y = func(this[i])
+            console.log(y)
+            
+        }
+}
+let y = arr2.NewForeach(function(y){
+    return y*3
+
+})
+console.log(y)
+
+
+
+
+
+</script>
+</html>

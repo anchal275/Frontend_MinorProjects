@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Show</title>
+   
+</head>
+<body>
+    <h1>Slid Show</h1>
+    <input type="url"  id="image" placeholder="Enter Image Url">
+    <button onclick="addimage()" >Submit</button>
+    <button onclick="slideshow()">Start Slide Show</button>
+    <button onclick="pause()">Pause</button>
+
+    <div></div>
+</body>
+<script>
+   
+   
+
+
+    function addimage(){
+      let imageURL = document.querySelector("#image")
+      let imagearr= JSON.parse(localStorage.getItem("storeimagedata")) || []
+      imagearr.push(imageURL.value)
+      localStorage.setItem("storeimagedata", JSON.stringify(imagearr))
+      imageURL.value=null
+    }
+    let id;
+    let i=0
+    function slideshow(){
+        let imagearr= JSON.parse(localStorage.getItem("storeimagedata"))
+        let container = document.querySelector("div")
+      id =  setInterval(function(){
+            if(i==imagearr.length){
+                i=0
+            }
+           let img = document.createElement("img")
+           img.setAttribute("src",imagearr[i])
+           container.innerHTML=""
+           container.append(img)
+           i++
+        },1000)
+    }
+
+ 
+    
+
+</script>
+</html>

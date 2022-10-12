@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+         table{
+          margin: auto;
+          width: 80%;
+          margin-top: 20px;
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+          border-collapse: collapse;
+        }
+
+        thead{
+          background-color: #008080;
+          color: white;
+          height: 50px;
+          font-size: 21px;
+          text-align: center;
+        }
+
+        tbody{
+           text-align: center;
+           margin: auto;
+          
+        }
+        td{
+          height: 30px;
+         margin: 20px;
+         border: 1px solid rgb(224, 224, 224);
+         border-collapse: collapse;
+          
+        }
+
+        body{
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar{
+         display: flex;
+         justify-content: space-evenly;
+         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        
+        .navbar>h1>a{
+            color: black;
+            font-size: 30px;
+            text-decoration: none;
+        }
+      
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1><a href="home.html">Home</a></h1>
+        <h1><a href="dashboard.html">Dashboard</a></h1>
+        <h2 id="batches"></h2>
+      </div>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Cource</td>
+                <td>Unit</td>
+                <td>Image</td>
+                <td>Batch</td>
+                <td>Remove</td>
+            </tr>
+           
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<script>
+    let datafromhome = JSON.parse(localStorage.getItem("Storestudent")) || []
+    let trash =JSON.parse(localStorage.getItem("Trash"))|| []
+    displaytable(datafromhome)
+    function displaytable(datafromhome){
+     datafromhome.map(function(elem,index){
+     let row = document.createElement("tr")
+
+     let td1 = document.createElement("td")
+     td1.innerText=elem.name
+     let td2 = document.createElement("td")
+     td2.innerText=elem.cource
+     let td3 = document.createElement("td")
+     td3.innerText=elem.unit
+     let td4 = document.createElement("td")
+     let img = document.createElement("img")
+     img.setAttribute("src",elem.image)
+     td4.append(img)
+
+     let td5 = document.createElement("td")
+     td5.innerText=elem.batch
+
+     let td6 = document.createElement("td")
+     td6.innerText="Remove"
+     td6.style.backgroundColor="red"
+     td6.addEventListener("click",function(){
+        del(elem,index)
+     })
+
+     row.append(td1,td2,td3,td4,td5,td6)
+     document.querySelector("tbody").append(row)
+     })
+    }
+
+
+    function del(elem,index){
+        trash.push(elem)
+        datafromhome.splice(index,1)
+        localStorage.setItem("Storestudent",JSON.stringify(datafromhome))
+        localStorage.setItem("Trash",JSON.stringify(trash))
+        window.location.reload()
+    }
+
+    function calculate(){
+        let obj={}
+        for(let i=0;i<datafromhome.length;i++){
+            if(obj[datafromhome[i].batch]==undefined){
+                obj[datafromhome[i].batch]=1
+            }else{
+                obj[datafromhome[i].batch]++
+            }
+        }let bag=""
+        for(let key in obj){
+        let x = (`${key}: ${obj[key]}`)
+        bag+=x+" "+" | "
+        } let navbarheading = document.querySelector("#batches")
+        navbarheading.innerHTML=bag
+
+    }
+    
+    calculate()
+</script>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+    <style>
+      tbody>tr>td:last-child{
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="applied.html">Applied Jobs</a></div>
+      <div><a href="bookmark.html">Bookmarks</a></div>
+    </div>
+    <select onchange="changebyName()" id="byname">
+      <option value="">Sort by Name</option>
+      <option value="Ascending">Ascending</option>
+      <option value="Descending">Descending</option>
+    </select>
+
+    <select onchange="changebySalary()" id="bysalary">
+      <option value="">Sort by Salary</option>
+      <option value="LowHigh">Low to High</option>
+      <option value="HighLow">High to Low</option>
+    </select>
+
+    <select onchange="changebyRole()" id="byrole">
+      <option value="">Filter by Role</option>
+      <option value="FSD">FSD</option>
+      <option value="Frontend">Frontend</option>
+      <option value="Backend">Backend</option>
+    </select>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+            <th>Salary expected</th>
+            <th>Add to bookmark</th>
+          </tr>
+        </thead>
+        <tbody id="body">
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //you need to code here
+    let getData = JSON.parse(localStorage.getItem("jobList"))
+    let bookmarkArr =JSON.parse(localStorage.getItem("bookmarks")) || []
+    displayTable(getData)
+    function displayTable(getData){
+      document.querySelector("tbody").innerHTML=""
+    getData.map(function(elm,index){
+    let row = document.createElement("tr")
+
+    let td1 = document.createElement("td")
+    td1.innerText=elm.Name
+    let td2 = document.createElement("td")
+    td2.innerText=elm.Email
+    let td3 = document.createElement("td")
+    td3.innerText=elm.Role
+    let td4 = document.createElement("td")
+    td4.innerText=elm.Salary
+    let td5 = document.createElement("td")
+    td5.innerText="Add to Bookmark"
+    td5.addEventListener("click", function (){
+      displayelm(elm,index)
+    })
+
+    row.append(td1,td2,td3,td4,td5)
+    document.querySelector("tbody").append(row)
+    })
+    }
+
+    function displayelm(elm,index){
+      bookmarkArr.push(elm)
+      getData.splice(index,1)
+      console.log(getData)
+      localStorage.setItem("jobList",JSON.stringify(getData))
+      localStorage.setItem("bookmarks",JSON.stringify(bookmarkArr))
+      window.location.reload()
+    }
+
+
+
+    function changebyName(){
+     let selected = document.querySelector("#byname").value;
+     if(selected=="Ascending"){
+     getData.sort(function (a,b){
+       if(a.Name>b.Name) return 1
+       if(a.Name<b.Name) return -1
+       return 0
+     })
+     displayTable(getData)
+     }
+   
+     if(selected=="Descending"){
+     getData.sort(function (a,b){
+       if(a.Name>b.Name) return -1
+       if(a.Name<b.Name) return 1
+       return 0
+     })
+     displayTable(getData)
+     }
+    }
+
+
+
+    function changebySalary(){
+     
+      let selected = document.querySelector("#bysalary").value;
+      if(selected == "LowHigh"){
+      getData.sort(function (a,b){
+        return a.Salary-b.Salary
+      })
+      displayTable(getData)
+      }
+      console.log(getData)
+      if(selected=="HighLow"){
+       getData.sort(function (a,b){
+         return b.Salary-a.Salary
+       })
+       displayTable(getData)
+      }
+    }
+
+
+    function changebyRole(){
+      let selected = document.querySelector("#byrole").value
+      let res = getData.filter(function (elm){
+       return elm.Role === selected
+      })
+      displayTable(res)
+    }
+  </script>
+</html>

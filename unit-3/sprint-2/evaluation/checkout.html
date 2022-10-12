@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+  <style>
+     body{
+        margin: 0;
+        padding: 0;
+        font-family: poppins sans-serif;
+        font-size: 18px;
+      }
+      
+      #navbar{
+      
+        display: flex;
+        justify-content: end;
+        gap: 100px;
+        border: 1px solid black;
+        padding: 10px 50px;
+            }
+  </style>
+
+  <body>
+    <div id="navbar">
+      <div>login</div>
+      <div>Sign-Up</div>
+      <div><a href="./cart.html">Cart</a></div>
+      <div id="wallet">700</div>
+      <!-- Give cart link for navigation with id:- cart   -->
+      <!-- For wallet amount Show only number i.e only "500", no extra text like "amount = 500" with id :- "wallet" -->
+    </div>
+    <div id="order-form">
+      <form   > 
+        <input type="name"   placeholder="Name" id="user_name">
+        <input type="number"  placeholder="Number" id="user_number">
+        <input type="address" placeholder="Address" id="user_address">
+        <input type="submit"  onclick="abc()" id="submit">
+      </form>
+      <!--Add your form html element here-->
+      <!--In form, give #user_name,#user_number and #user_address as HTML id's to relevant input elements -->
+    </div>
+  </body>
+  <script src="./scripts/checkout.js"></script>
+</html>
